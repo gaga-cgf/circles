@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Circles</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header name="top">
+      <nav class="navbar navbar-default navbar-fixed-top nav-color" role="navigation" id="nav">
+        <div class="container">
+          <div class="navbar-header nav-color">
+            <button id="nav_collapse" type="button" class="navbar-toggle toggle-btn" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-controls="bs-navbar-collapse-1">
+              <span class="fa fa-bars fa-lg"></span>
+            </button>
+            <a href="/" class="navbar-brand custom-logo-link">
+              Circles
+            </a>
+          </div>
+
+          <div class="collapse navbar-collapse navbar-submenu-color collapse" id="bs-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right custom">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="<%= users_path%>">用户</a>
+              </li>
+              
+              <% if logged_in? %>
+                <li><%= link_to "#{current_user.username}，退出", session_path(session[:user_id]), method: 'delete' %></li>
+              <% else %>
+                <li><%= link_to '登录', new_session_path %></li>
+              <% end %>
+
+              <li><%= link_to '博客', blogs_path %></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container body-offset">
+      <% if flash[:notice] %>
+        <div class="alert alert-info">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>

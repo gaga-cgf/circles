@@ -1,0 +1,11 @@
+<% if session[:user_id] %>
+  <h2>欢迎你，<%= "#{User.find(session[:user_id]).username}"%></h2>
+<% else %>
+  <h1>Circles首页</h1>
+<% end %>
+<p>1112</p>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("p").text("成功！！");
+  });
+</script>

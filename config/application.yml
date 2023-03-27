@@ -1,0 +1,12 @@
+development: &default
+  domin: 'localhost'
+
+production:
+  domin: 'www.343edu.com'
+
+test:
+  <<: *default
+
+staging:
+  <<: *default
+  domin: 'dev.343edu.com'

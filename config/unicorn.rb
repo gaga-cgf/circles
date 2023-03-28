@@ -56,7 +56,7 @@ check_client_connection false
 # local variable to guard against running a hook multiple times
 run_once = true
 
-before_fork do # |server, worker|
+before_fork do |server, worker|
   # the following is highly recomended for Rails + 'preload_app true'
   # as there's no need for the master process to hold a connection
   defined?(ActiveRecord::Base) and
@@ -69,6 +69,18 @@ before_fork do # |server, worker|
     # do_something_once_here ...
     run_once = false # prevent from firing again
   end
+
+  old_pid = "#{server.config[:pid]}.oldbin"
+  if File.exist?(old_pid) && old_pid != server.pid
+    begin
+      puts "start kill old master process pid: #{old_pid}, new pid: #{server.pid}"
+      sig = (worker.nr + 1) >=server.worker_process ? :QUIT : :TTOU
+      Process.kill(sig, File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+    end
+  end
+
+  sleep(2)
 
   # The following is only recommended for memory/DB-constrained
   # installations.  It is not needed if your system can house

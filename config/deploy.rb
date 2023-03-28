@@ -2,14 +2,14 @@
 lock '~> 3.17.2'
 
 set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+set :repo_url, 'https://github.com/gaga-cgf/circles.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # set :branch, ENV['BRANCH'] || 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/nginx/html/circles'
+set :deploy_to, '/deploy/nginx/html/circles'
 
 set :rails_env, ENV['RAILS_ENV'] || ENV['rails_env'] # 自定义内容
 # Default value for :format is :airbrussh.
@@ -39,3 +39,10 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'tmp/webpack
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+namespace :deploy do
+  task :restart do
+    invoke 'deploy:unicorn_mine:reload'
+  end
+end
+
+after 'deploy:publishing', 'deploy:restart'

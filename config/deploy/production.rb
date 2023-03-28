@@ -2,7 +2,7 @@
 set :branch, 'master'
 set :rails_env, 'production'
 
-server 'ip/website', user: 'deploy', roles: %w[web db]
+server '39.106.23.167', user: 'deploy', roles: %w[web db]
 # user: 登录远程服务器的用户 roles: 角色（不同服务器当作不同角色）
 # server-based syntax
 # ======================

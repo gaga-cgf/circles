@@ -27,20 +27,20 @@ working_directory rails_root # available in 0.94.0+
 
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
-listen "#{rails_root}}/log/.unicorn.sock", backlog: 64
+listen "#{rails_root}/log/.unicorn.sock", backlog: 64
 listen 8080, tcp_nopush: true
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
 timeout 30
 
 # feel free to point this anywhere accessible on the filesystem
-pid "#{rails_root}}/tmp/pids/unicorn.pid"
+pid "#{rails_root}/tmp/pids/unicorn.pid"
 
 # By default, the Unicorn logger will write to stderr.
 # Additionally, ome applications/frameworks log to stderr or stdout,
 # so prevent them from going to /dev/null when daemonized here:
-stderr_path "#{rails_root}}/log/unicorn.stderr.log"
-stdout_path "#{rails_root}}/log/unicorn.stdout.log"
+stderr_path "#{rails_root}/log/unicorn.stderr.log"
+stdout_path "#{rails_root}/log/unicorn.stdout.log"
 
 # combine Ruby 2.0.0+ with 'preload_app true' for memory savings
 preload_app true
@@ -107,7 +107,7 @@ before_fork do |server, worker|
   # sleep 1
 end
 
-after_fork do # |server, worker|
+after_fork do |server, worker|
   # per-process listener ports for debugging/admin/migrations
   # addr = '127.0.0.1:#{9293 + worker.nr}'
   # server.listen(addr, :tries => -1, :delay => 5, :tcp_nopush => true)

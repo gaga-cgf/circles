@@ -31,5 +31,5 @@ production:
   <<: *default
   host: 127.0.0.1
   database: circles_production
-  username: circles
-  password: circless_p_production
+  username: deploy
+  password: Qq:971215

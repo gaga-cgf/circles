@@ -5,10 +5,9 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 
 require 'capistrano/rails'
-require 'capistrano/rbenv'
 
-set :rbenv_type, :user
-set :rbenv_ruby, '3.2.1'
+set :rvm_type, :user
+set :rvm_ruby, '3.1.2'
 
 # Load the SCM plugin appropriate to your project:
 #
@@ -32,12 +31,12 @@ install_plugin Capistrano::SCM::Git
 #   https://github.com/capistrano/rails
 #   https://github.com/capistrano/passenger
 #
-# require 'capistrano/rvm'
+require 'capistrano/rvm'
 # require 'capistrano/rbenv'
 # require 'capistrano/chruby'
-# require 'capistrano/bundler'
+require 'capistrano/bundler'
 # require 'capistrano/rails/assets'
-# require 'capistrano/rails/migrations'
+require 'capistrano/rails/migrations'
 # require 'capistrano/passenger'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined

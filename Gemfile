@@ -47,7 +47,7 @@ group :development do
   gem 'spring'
   gem 'capistrano'
   gem 'capistrano-rails'
-  gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
+  gem 'capistrano-rvm', '~> 0.1.2'
 end
 
 group :test do

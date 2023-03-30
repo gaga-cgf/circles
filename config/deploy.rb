@@ -22,8 +22,8 @@ set :rails_env, ENV['RAILS_ENV'] || ENV['rails_env'] # 自定义内容
 # Default value for :pty is false
 # set :pty, true
 
-# Default value for :linked_files is []
-# append :linked_files, 'config/database.yml', 'config/master.key'
+# Default value for :linked_files is []'config/database.yml',
+append :linked_files, 'config/master.key'
 
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'tmp/webpacker', 'public/system', 'vendor', 'storage'

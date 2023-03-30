@@ -6,10 +6,8 @@ class CreateBlogs < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :content
       t.boolean :is_public, default: true
-      t.belongs_to :user, class_name: "user", foreign_key: "user_id"
+      t.references :user,foreign_key: true, null: false, index: true
       t.timestamps
     end
-
-    add_index :blogs, [:user_id]
   end
 end

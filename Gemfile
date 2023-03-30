@@ -47,6 +47,7 @@ group :development do
   gem 'spring'
   gem 'capistrano'
   gem 'capistrano-rails'
+  gem "capistrano-bundler", "~> 2.1"
 end
 
 group :test do
